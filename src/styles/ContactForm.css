@@ -1,9 +1,9 @@
 .contactForm {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
+  padding: 30px;
+
 }  
   
 form {
@@ -11,6 +11,7 @@ form {
   display: flex;
   flex-direction: column;
   margin: 10px 50px;
+  justify-content: center;
 }
 
 form > input {
@@ -27,14 +28,33 @@ form > input {
   display: flex;
   flex-direction: column;
   margin: 10px 50px;
-
-}
-
-.list > h1 {
-  margin: 20px 0px;
-  color: #16813b;
+  justify-content: center;
 }
 
 .list > h2 {
   margin: 10px 0px;
+}
+
+
+@media (max-width: 1139px) {
+  .list {
+    flex: 1;
+  }
+  form {
+    flex: 1;
+  }
+  .contactForm {
+    flex-direction: column;
+  }
+
+}
+
+
+@media (max-width: 1139px) {
+    tr {
+        display: flex;
+        flex-direction: column;
+        margin: 8px 0px;
+    }
+
 }

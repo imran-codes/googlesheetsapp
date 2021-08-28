@@ -72,7 +72,6 @@ function ContactForm() {// eslint-disable-next-line
     <div className="contactForm">
 
       <div className="list">
-          <h1>Staff Expenses List</h1>
             <h2>Annual expenses (Total Salaries):  £{totalSalaries}</h2>
           
               <table>
