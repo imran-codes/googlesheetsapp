@@ -9,10 +9,21 @@ function ContactForm() {// eslint-disable-next-line
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const [gettableData, setGetTableData] = useState([]);
+  //const [placeholder, setPlaceholder] = useState('')
+  const [totalSalaries, setTotalSalaries] = useState(0)
 
   useEffect(() => {
    fetchData();
   }, [])
+
+  // total salaries using reduce
+  useEffect(() => {
+    const total = gettableData.reduce(
+      (total, row) => (total = total + Number(row.salary)), 
+      0
+      )
+      setTotalSalaries(total)
+   }, [gettableData])
 
 
   const fetchData = () => {
@@ -49,64 +60,67 @@ function ContactForm() {// eslint-disable-next-line
       alert('row successfully added')
       //more efficient method of updating instead of fetching again
       setGetTableData([...gettableData, tableData])
-      // fetchData();
+       //fetchData();
       console.log(res)
     })
     .catch(error => alert(error.message));
   };
 
+
+
   return (
     <div className="contactForm">
-        <h1>People's List</h1>
-       
-          <table>
-            <tbody>
-              {gettableData.map(({age, hobby, name, salary}) => (
-                <tr>
-                  <td><strong>Name:</strong> {name}</td>
-                  <td><strong>Age:</strong> {age}</td>
-                  <td><strong>Salary:</strong> {salary}</td>
-                  <td><strong>Hobby:</strong> {hobby}</td>
-                </tr>
-                ))}
-            </tbody>
-          </table>
+
+      <div className="list">
+          <h1>Staff Expenses List</h1>
+            <h2>Annual expenses (Total Salaries):  £{totalSalaries}</h2>
+          
+              <table>
+                <tbody>
+                  {gettableData.map(({age, hobby, name, salary}) => (
+                    <tr>
+                      <td><strong>Name:</strong> {name}</td>
+                      <td><strong>Age:</strong> {age}</td>
+                      <td><strong>Salary:</strong> {salary}</td>
+                      <td><strong>Hobby:</strong> {hobby}</td>
+                    </tr>
+                    ))}
+                </tbody>
+              </table>
+      </div>
+        
        
 
             <form onSubmit={handleSubmit(submitForm)}>
               <input 
-              required
               type = 'text'
               placeholder= 'Name'
               {...register('name', { required: true })} 
-              error = {errors.name}
-              helperText = {errors.name && 'The name is required'}
               />
+              {errors.name?.type === 'required' && "Name is required"}
+
               <input
-              required
               type = 'number'
               placeholder= 'Age'
               {...register('age', { required: true })}
-              error = {errors.age}
-              helperText = {errors.age && 'The age is required'}
               />
+              {errors.age?.type === 'required' && "Age is required"}
+              
               <input
-              required
               type = 'number'
               placeholder= 'Salary'
               {...register('salary', { required: true })}
-              error = {errors.salary}
-              helperText = {errors.salary && 'The salary is required'}
               />
+              {errors.salary?.type === 'required' && "Salary is required"}
+
               <input
-              required
               type = 'text'
               placeholder= 'Hobby'
-              {...register('hobby', { required: true })}
-              error = {errors.hobby}
-              helperText = {errors.hobby && 'The hobby is required'}
+              {...register('hobby', { required: true })}   
               />
-              <Button type = 'submit'>Submit</Button>
+              {errors.hobby?.type === 'required' && "Hobby is required"}
+
+              <Button variant="contained" color="primary" type = 'submit'>Submit</Button>
             </form>
       </div>
   )

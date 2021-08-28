@@ -1,0 +1,40 @@
+.contactForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}  
+  
+form {
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 50px;
+}
+
+form > input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+  
+}
+
+.list {
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 50px;
+
+}
+
+.list > h1 {
+  margin: 20px 0px;
+  color: #16813b;
+}
+
+.list > h2 {
+  margin: 10px 0px;
+}
