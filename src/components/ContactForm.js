@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import {useState, useEffect} from 'react'
 
 function ContactForm() {// eslint-disable-next-line
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
 
   const [gettableData, setGetTableData] = useState([]);
   //const [placeholder, setPlaceholder] = useState('')
@@ -61,6 +61,12 @@ function ContactForm() {// eslint-disable-next-line
       //more efficient method of updating instead of fetching again
       setGetTableData([...gettableData, tableData])
        //fetchData();
+       reset({
+         name: '',
+         age: null,
+         salary: null, 
+         hobby: ''
+       })
       console.log(res)
     })
     .catch(error => alert(error.message));
@@ -96,28 +102,28 @@ function ContactForm() {// eslint-disable-next-line
               placeholder= 'Name'
               {...register('name', { required: true })} 
               />
-              {errors.name?.type === 'required' && "Name is required"}
+              {errors.name?.type === 'required' && <p className = 'errors'>Name is required</p>}
 
               <input
               type = 'number'
               placeholder= 'Age'
               {...register('age', { required: true })}
               />
-              {errors.age?.type === 'required' && "Age is required"}
+              {errors.age?.type === 'required' && <p className = 'errors'>Age is required</p>}
               
               <input
               type = 'number'
               placeholder= 'Salary'
               {...register('salary', { required: true })}
               />
-              {errors.salary?.type === 'required' && "Salary is required"}
+              {errors.salary?.type === 'required' && <p className = 'errors'>Salary is required</p>}
 
               <input
               type = 'text'
               placeholder= 'Hobby'
               {...register('hobby', { required: true })}   
               />
-              {errors.hobby?.type === 'required' && "Hobby is required"}
+              {errors.hobby?.type === 'required' && <p className = 'errors'>Hobby is required</p>}
 
               <Button variant="contained" color="primary" type = 'submit'>Submit</Button>
             </form>

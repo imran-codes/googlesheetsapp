@@ -35,6 +35,12 @@ form > input {
   margin: 10px 0px;
 }
 
+.errors {
+  color: red;
+  font-size: small;
+  margin-bottom: 5px;
+}
+
 
 @media (max-width: 1139px) {
   .list {
